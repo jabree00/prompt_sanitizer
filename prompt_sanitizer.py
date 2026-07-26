@@ -34,8 +34,6 @@ class PromptSanitizer:
 
         return prompt
 
-    def 
-
             
     def safely_query(self,prompt):
         safe_prompt = self.regex_scrub_prompt(prompt)
