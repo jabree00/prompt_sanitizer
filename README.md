@@ -16,12 +16,13 @@ prompts. It does not rely on access to a paid AI model to work.
 ## Known Limitations 
 This solution is limited by the libraries it uses. Thus far, the solution could not successfully redact a username resembling a person's first and last name. 
 
-This solution relies on the developer remembering to use this tool. Ideally, this tool
-would evolve such that it could detect data leaks without the developer needing to 
-remember to do anything. 
+This solution relies on the developer remembering to use the tool. A stronger version 
+of this tool could detect data leaks without the developer needing to 
+remember to do anything as many data leaks occur because of forgetfulness. We want to limit 
+opportunities for forgetfulness to cause problems. 
  
 # Credit Notes
-The inspiration for this tool's dashboard and replacement tags comes from [PasteGuard](https://github.com/sgasser/pasteguard/tree/main). 
+The inspiration for this tool's replacement tags comes from [PasteGuard](https://github.com/sgasser/pasteguard/tree/main). 
 
 # Resources 
 - [Querying Gemini 3.5 Flash Model](https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5#rest)
@@ -40,15 +41,17 @@ as separate commands has been the most successful means of getting the applicati
 to run. 
 
 0. Create a .env in the main folder with a variable called GENAI_KEY. 
-You will be to obtain a free API key for Gemini's 3.5 Flash model. You can get your key here:
+You will need to obtain a free API key for Gemini's 3.5 Flash model. 
+
+You can get your key here:
 [Get Gemini API key](https://aistudio.google.com/api-keys)
 1. Install python3 / pip 
-2. python3 -m venv .venv 
-3. source .venv/bin/activate
-4. pip install -r requirements.txt
-5. pip install -U pip setuptools wheel 
-6. pip install spacy 
-7. python -m spacy download en_core_web_sm
+2. Run python3 -m venv .venv 
+3. Run source .venv/bin/activate
+4. Run pip install -r requirements.txt
+5. Run pip install -U pip setuptools wheel 
+6. Run pip install spacy 
+7. Run python -m spacy download en_core_web_sm
 
 ## Troubleshooting 
 You may also need to run this line:
