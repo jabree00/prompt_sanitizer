@@ -1,31 +1,37 @@
 ## What specific problem are you addressing?
-The original Pasteguard acts as a DLP proxy and browser extension to prevent leakage of sensitive information. However, the tool does not work with any of the popular free models.
+Tools such as Pasteguard acts as a DLP proxy and browser extension to prevent leakage of sensitive information into AI models. However, Pasteguard specifically does not work with any of the popular, freely available models. This tool is, therefore, not useful for anyone depending on free models. 
  
 ## Why is the problem important?
-The popular free AI models such as Gemini 3.5 Flash hold value for development or low-budget applications. These applications are more likely to have exploitable flaws. Therefore, these applications are also likely to need the support of a tool like Pasteguard. 
+Google offers at least one free model (Gemini 3.5 Flash), which holds values for development or low-budget applications. These applications are more likely to have exploitable flaws. Therefore, these applications are also likely to need the support of a tool like Pasteguard. 
 
 ## What existing tools or approaches exist?
-The current solution that I have explored acts as a proxy intercepting the traffic containing 
-the prompt and then forwarding it on to the agent.
+Pasteguard acts as a proxy intercepting the traffic containing 
+the prompt and then forwarding it on to the agent. Pasteguard is also experimenting with 
+the tool being used as a browser extension. 
  
 ## What gap does your tool fill?
-
+This tool provides a non-proxy means of redacting sensitive information from 
+prompts. It does not rely on access to a paid AI model to work. 
 
 ## Known Limitations 
 This solution is limited by the libraries it uses. Thus far, the solution could not successfully redact a username resembling a person's first and last name. 
+
+This solution relies on the developer remembering to use this tool. Ideally, this tool
+would evolve such that it could detect data leaks without the developer needing to 
+remember to do anything. 
  
 # Credit Notes
 The inspiration for this tool's dashboard and replacement tags comes from [PasteGuard](https://github.com/sgasser/pasteguard/tree/main). 
 
 # Resources 
-[Querying Gemini 3.5 Flash Model](https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5#rest)
-[python-dotenv package](https://pypi.org/project/python-dotenv/)
-[scapy package](https://pypi.org/project/scapy/)
-[genai package](https://pypi.org/project/genai/)
-[Scapy Tutorial](https://www.geeksforgeeks.org/python/packet-sniffing-using-scapy/)
-[Another Scapy Tutorial](https://cse365.cse.buffalo.edu/PSS-Lab/)
-[Python Classes](https://www.w3schools.com/python/python_classes.asp)
-[Spacy Tutorial](https://spacy.io/usage/linguistic-features#section-named-entities)
+- [Querying Gemini 3.5 Flash Model](https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5#rest)
+- [python-dotenv package](https://pypi.org/project/python-dotenv/)
+- [scapy package](https://pypi.org/project/scapy/)
+- [genai package](https://pypi.org/project/genai/)
+- [Scapy Tutorial](https://www.geeksforgeeks.org/python/packet-sniffing-using-scapy/)
+- [Another Scapy Tutorial](https://cse365.cse.buffalo.edu/PSS-Lab/)
+- [Python Classes](https://www.w3schools.com/python/python_classes.asp)
+- [Spacy Tutorial](https://spacy.io/usage/linguistic-features#section-named-entities)
 
 
 # How to Run on Linux / Mac 
@@ -33,6 +39,9 @@ So far, I have found that running the installs for spacy and en_core_web_sm
 as separate commands has been the most successful means of getting the application 
 to run. 
 
+0. Create a .env in the main folder with a variable called GENAI_KEY. 
+You will be to obtain a free API key for Gemini's 3.5 Flash model. You can get your key here:
+[Get Gemini API key](https://aistudio.google.com/api-keys)
 1. Install python3 / pip 
 2. python3 -m venv .venv 
 3. source .venv/bin/activate

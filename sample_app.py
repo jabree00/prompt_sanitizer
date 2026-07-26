@@ -23,6 +23,7 @@ def main():
     for prompt in prompts:
         sanitizer = PromptSanitizer(GENAI_KEY)
         response = sanitizer.safely_query(prompt)
-        print("Response: " + response[0])
+        print("Cleaned Prompt: " + response[0])
+        print("Response: " + response[1].output_text)
 
 main()

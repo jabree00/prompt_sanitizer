@@ -23,22 +23,24 @@ class PromptSanitizer:
         return prompt
 
     def nlp_scrub_prompt(self,prompt):
-        processor = spacy.load("en_core_web_sm")
-        analysis = processor(prompt)
+        try: 
+            processor = spacy.load("en_core_web_sm")
+            analysis = processor(prompt)
 
-        for entity in analysis.ents:
-            if (entity.label_ == "PERSON"):
-                start = entity.start_char
-                end = entity.end_char
-                prompt = prompt[0:start] + "[NAME INSERTED]" + prompt[(end + 1):]
+            for entity in analysis.ents:
+                if (entity.label_ == "PERSON"):
+                    start = entity.start_char
+                    end = entity.end_char
+                    prompt = prompt[0:start] + "[NAME INSERTED]" + prompt[(end + 1):]
 
-        return prompt
+            return prompt
+        except: 
+                return prompt
 
             
     def safely_query(self,prompt):
         safe_prompt = self.regex_scrub_prompt(prompt)
         safe_prompt = self.nlp_scrub_prompt(safe_prompt)
-        response = None
 
         response = self.client.interactions.create(
                 model="gemini-3.5-flash", 
