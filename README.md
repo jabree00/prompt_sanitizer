@@ -1,3 +1,7 @@
+# Prompt Sanitizer
+This tool is a Python module designed to provide a quick way to safely query a free
+AI model. Ideally, this tool would become available pip. 
+
 ## What specific problem are you addressing?
 Tools such as Pasteguard acts as a DLP proxy and browser extension to prevent leakage of sensitive information into AI models. However, Pasteguard specifically does not work with any of the popular, freely available models. This tool is, therefore, not useful for anyone depending on free models. 
  
@@ -33,29 +37,32 @@ The inspiration for this tool's replacement tags comes from [PasteGuard](https:/
 - [Another Scapy Tutorial](https://cse365.cse.buffalo.edu/PSS-Lab/)
 - [Python Classes](https://www.w3schools.com/python/python_classes.asp)
 - [Spacy Tutorial](https://spacy.io/usage/linguistic-features#section-named-entities)
+- [Bash Script Example](https://www.w3schools.com/bash/bash_script.php)
 
 
-# How to Run on Linux / Mac 
+# Running the Program on Linux 
 So far, I have found that running the installs for spacy and en_core_web_sm 
 as separate commands has been the most successful means of getting the application 
 to run. 
 
-0. Create a .env in the main folder with a variable called GENAI_KEY. 
-You will need to obtain a free API key for Gemini's 3.5 Flash model. 
+- Create a .env in the main folder with a variable called GENAI_KEY. You will need to obtain a free API key for Gemini's 3.5 Flash model. You can get your key here: [Get Gemini API key](https://aistudio.google.com/api-keys)
 
-You can get your key here:
-[Get Gemini API key](https://aistudio.google.com/api-keys)
-1. Install python3 / pip 
-2. Run python3 -m venv .venv 
-3. Run source .venv/bin/activate
-4. Run pip install -r requirements.txt
-5. Run pip install -U pip setuptools wheel 
-6. Run pip install spacy 
-7. Run python -m spacy download en_core_web_sm
+- Run the following in the terminal
+1. chmod +x installer_linux.sh
+2. ./installer_linux.sh
 
-## Troubleshooting 
-You may also need to run this line:
-pip install -U click spacy 
+
+# Running the Program on Mac 
+So far, I have found that running the installs for spacy and en_core_web_sm 
+as separate commands has been the most successful means of getting the application 
+to run. 
+
+- Create a .env in the main folder with a variable called GENAI_KEY. You will need to obtain a free API key for Gemini's 3.5 Flash model. You can get your key here: [Get Gemini API key](https://aistudio.google.com/api-keys)
+
+- Run the following in the terminal
+1. chmod +x installer_mac.sh
+2. ./installer_mac.sh
+
 
 # AI Usage 
 
@@ -66,32 +73,23 @@ For the most part, I used AI to:
 3. Get the standard PII regexes used within the program. 
 
 ## Prompts
-Prompt #1 (ChatGPT): What is the easiest way to intercept network traffic and forward it on using Python only? Don't give me full details, just a high-level overview.
+- (ChatGPT): What is the easiest way to intercept network traffic and forward it on using Python only? Don't give me full details, just a high-level overview.
+- (ChatGPT): Would I have a better chance of capturing the outgoing unencrypted traffic heading toward Gemini's 3.5 Flash model if I use curl instead of the API?
+- (ChatGPT): So, there isn't a way to capture the unencrypted traffic of a pre-existing application
+- (ChatGPT): How then does PasteGuard manage to transform prompts before it reaches the model?
+- (ChatGPT): What about the docker version of PasteGuard?
+- Why bother with a proxy at that point? Why should I not simply create a library that extends the genai library and has "santize_query" method that queries the model based on a given prompt WITH the sensitive info redacted? Just evaluate the feasibility and any pitfalls of my idea.
+- (Gemini): create my own python package
+- (ChatGPT): Give me standard Python regexes for the following: social security numbers phone numbers email addresses bank account numbers routing numbers EIN numbers tax ID numbers credit card numbers debit card numbers
+- (ChatGPT): What about a standard regex for names?
+- (Gemini): import spacy no module named click
+- (Gemini): alternatives to spacy
+- (Gemini): getting started with spacy mac
+- (Gemini): linux bash script
+- (Gemini): linux install python and pip 
+- (Gemini): hombrew install python3 and pip
+- (Gemini): powershell install python and pip 
+- Can spacy idenityf specific addresses
 
-Prompt #2 (ChatGPT): Would I have a better chance of capturing the outgoing unencrypted traffic heading toward Gemini's 3.5 Flash model if I use curl instead of the API?
 
-Prompt #3 (ChatGPT): So, there isn't a way to capture the unencrypted traffic of a pre-existing application
-
-Prompt #4 (ChatGPT): How then does PasteGuard manage to transform prompts before it reaches the model?
-
-Prompt #5 (ChatGPT): What about the docker version of PasteGuard?
-
-Prompt #6: Why bother with a proxy at that point? Why should I not simply create a library that extends the genai library and has "santize_query" method that queries the model based on a given prompt WITH the sensitive info redacted? Just evaluate the feasibility and any pitfalls of my idea.
-
-Prompt #7 (Gemini): create my own python package
-
-Prompt #8 (ChatGPT):
-Give me standard Python regexes for the following: social security numbers phone numbers email addresses bank account numbers routing numbers EIN numbers tax ID numbers credit card numbers debit card numbers
-
-Prompt #9 (ChatGPT):
-What about a standard regex for names?
-
-Prompt #10 (Gemini):
-import spacy no module named click
-
-Prompt #11 (Gemini):
-alternatives to spacy
-
-Prompt #12 (Gemini)
-getting started with spacy mac
 
